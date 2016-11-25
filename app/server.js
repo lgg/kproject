@@ -8,7 +8,7 @@ var port = 3003; //process.env.PORT; //port on which we will serve the app
 var port_socket = 3003; //process.env.PORT; //port on which socket server will start
 
 //data for orders
-var orders = {},
+var orders = [],
     clientSockets = [];
 
 //create http server
@@ -24,7 +24,7 @@ app.use('/', require('express').static(__dirname + '/client'));
 //create new order
 app.get('/neworder/:itemId', function (req, res) {
     log.log('get request for new order #' + req.params.itemId);
-    var newOrderId = Object.keys(orders).length,
+    var newOrderId = orders.length,
         order = {
             id: newOrderId,
             itemId: req.params.itemId,
@@ -32,7 +32,7 @@ app.get('/neworder/:itemId', function (req, res) {
         };
     orders.push(order);
 
-    clientSockets.forEach(function (i, socket) {
+    clientSockets.forEach(function (socket) {
         socket.emit('neworder', {order: order})
     });
 
@@ -83,7 +83,7 @@ function startSocket(server) {
 
         clientSockets.push(socket);
 
-        socket.on('register', function(){
+        socket.on('register', function () {
             socket.emit('registered');
 
             socket.on('setstatus', function (data) {
