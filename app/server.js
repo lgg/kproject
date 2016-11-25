@@ -83,11 +83,13 @@ function startSocket(server) {
 
         clientSockets.push(socket);
 
-        socket.emit('registered');
+        socket.on('register', function(){
+            socket.emit('registered');
 
-        socket.on('setstatus', function (data) {
-            //@TODO
-            console.dir(data);
+            socket.on('setstatus', function (data) {
+                //@TODO
+                console.dir(data);
+            });
         });
     });
 }
