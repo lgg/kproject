@@ -1,0 +1,30 @@
+html, body{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+.full-height{
+    height: 100%;
+}
+
+.full-width{
+    width: 100%;
+}
+
+.flex{
+    display: flex;
+}
+
+.split{
+    width: 50%;
+    height: 100%;
+}
+
+.split:first-of-type{
+    border-right: 1px solid black;
+}
+
+.split h4{
+    text-align: center;
+}
