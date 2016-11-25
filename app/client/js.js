@@ -27,8 +27,26 @@ function registerSocket() {
     socket.on('registered', function () {
         //Add listener for new order request
         socket.on('neworder', function (data) {
-            console.log(data);
+
+            /*
+             id
+             itemId
+             status
+            */
+            console.log(data.order);
         });
     });
 }
 
+
+function displayNewOrder(order){
+    
+}
+
+function moveOrderToPacked(){
+
+}
+
+function moveOrderToDone(){
+
+}
