@@ -192,19 +192,21 @@ var api = {
 
         items.forEach(function (item) {
             getJson(api.url + item.ean, headers, function (data) {
-                result[item.ean] = {
-                    price: getPrice(item.ean),
-                    wid: getWarehouseId(),
-                    name: data.name,
-                    desc: data.description,
-                    ean: item.ean,
-                    images: data.images
-                };
-                parsedItems++;
+                getPrice(item.ean, function (price) {
+                    result[item.ean] = {
+                        price: price,
+                        wid: getWarehouseId(),
+                        name: data.name,
+                        desc: data.description,
+                        ean: item.ean,
+                        images: data.images
+                    };
+                    parsedItems++;
 
-                if (parsedItems == items.length) {
-                    callback(result);
-                }
+                    if (parsedItems == items.length) {
+                        callback(result);
+                    }
+                });
             });
         });
     }
@@ -225,9 +227,11 @@ function getJson(url, headers, callback) {
     request.open('GET', url, true);
 
     //set headers
-    headers.forEach(function (h) {
-        request.setRequestHeader(h[0], h[1]);
-    });
+    if (headers) {
+        headers.forEach(function (h) {
+            request.setRequestHeader(h[0], h[1]);
+        });
+    }
 
     request.onload = function () {
         if (this.status >= 200 && this.status < 400) {
@@ -248,20 +252,10 @@ function getJson(url, headers, callback) {
     request.send();
 }
 
-function getPrice(ean) {
-    var hardcoded = [
-        [3253560306977, 8.95],
-        [3253561929052, 17.95],
-        [7320090038527, 41]
-    ];
-
-    for (var i = 0; i < hardcoded.length; i++) {
-        if (hardcoded[i][0] == ean) {
-            return hardcoded[i][1];
-        }
-    }
-
-    return random(5, 100);
+function getPrice(ean, callback) {
+    getJson('/price/' + ean, false, function (res) {
+        callback(res.price);
+    });
 }
 
 function getWarehouseId() {
