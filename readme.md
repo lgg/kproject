@@ -22,14 +22,38 @@
     * e.g `?h=400&w=400`
 * IMPORTANT use `&fit=fill`
 
-## params
+### Product info
 
-### order status
-
-* wip - order is packing
-* packed - order is waiting on pick point
-* shipped- order is shipped to client
+===
 
 ## app api
+
+### add new order
+
+* send get request to url:
+    * `HOST/neworder/EAN-AMOUNT` for one item to buy
+    * or
+    * `HOST/neworder/EAN-AMOUNT,EAN-AMOUNT` for some items to buy
+        * so just separate `EAN-AMOUNT` for each item by commas
+* response will be like
+    * `{"orderId":ORDERIDHERE}`
+    * where `ORDERIDHERE` is integer unique id for your order
+
+### check status of order
+
+* send get request to url:
+    * `HOST/status/ORDERID`
+    * where `ORDERID` is the order id you got when adding
+* response will be like
+    * `{"status":"STATUSHERE"}`
+    * where `STATUSHERE` is one of order status listed below
+    
+### order status
+
+* wip - order is processing
+* packed - order is completed/waiting for customer on pick point
+* shipped- order is shipped to client
+    
+===
 
 ## web api
