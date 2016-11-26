@@ -53,6 +53,10 @@
 
 ### get price for product
 
+* send get request to url:
+    * `HOST/neworder/EAN` to get price for this item
+* response will be like
+    * `{"price":17.95}`
 
 ### add new order
 
