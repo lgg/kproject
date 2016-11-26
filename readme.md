@@ -21,6 +21,7 @@
 * to set size
     * e.g `?h=400&w=400`
 * IMPORTANT use `&fit=fill`
+* e.g. `http://kesko.fi/img/123?h=400&w=400&fit=fill`
 
 ### Product info
 
