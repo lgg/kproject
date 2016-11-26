@@ -83,7 +83,7 @@ app.get('/price/:ean', function (req, res) {
     //response price
     res.json({price: prices[req.params.ean]});
 
-    log.log('response price for ean ' + req.params.ean + 'is ' + prices[req.params.ean]);
+    log.log('response price for ean ' + req.params.ean + ' is ' + prices[req.params.ean]);
 });
 
 //If we have error - die
