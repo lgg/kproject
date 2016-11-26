@@ -82,6 +82,8 @@ app.get('/price/:ean', function (req, res) {
 
     //response price
     res.json({price: prices[req.params.ean]});
+
+    log.log('response price for ean ' + req.params.ean + 'is ' + prices[req.params.ean]);
 });
 
 //If we have error - die
@@ -155,9 +157,13 @@ function random(min, max) {
 
 function generatePrice(ean) {
     if (prices[ean]) {
+        log.log('already have price for ' + ean + ' price is ' + prices[ean]);
+
         return prices[ean];
     } else {
         prices[ean] = random(5, 100);
+
+        log.log('generated price for ' + ean + ' price is ' + prices[ean]);
         return prices[ean];
     }
 }
