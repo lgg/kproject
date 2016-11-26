@@ -9,7 +9,8 @@ var port_socket = 3003; //process.env.PORT; //port on which socket server will s
 
 //data for orders
 var orders = [],
-    clientSockets = [];
+    clientSockets = [],
+    startIdForOrders = 100;
 
 //create http server
 var app = require('express')();
@@ -22,15 +23,25 @@ app.use('/', require('express').static(__dirname + '/client'));
 
 //API for mobile app
 //create new order
-app.get('/neworder/:ean', function (req, res) {
-    var newOrderId = orders.length,
+app.get('/neworder/:items', function (req, res) {
+    var items = req.params.items.split(',');
+
+    for (var i = 0; i < items.length; i++) {
+        var item_string = items[i];
+        items[i] = {
+            ean: item_string.substr(0, item_string.indexOf('-')),
+            amount: item_string.substr(item_string.indexOf('-') + 1)
+        }
+    }
+
+    var newOrderId = startIdForOrders + orders.length,
         order = {
             id: newOrderId,
-            ean: req.params.ean,
-            status: 'wip',
+            items: items,
+            status: 'wip'
         };
 
-    log.log('get request for new order #' + newOrderId + ' item id ' + req.params.ean);
+    log.log('get request for new order #' + newOrderId);
 
     orders.push(order);
 
