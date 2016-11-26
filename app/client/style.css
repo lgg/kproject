@@ -78,3 +78,17 @@ tr:hover .mdlext-accordion__tabpanel{
 .mdlext-accordion__tab[aria-selected=true], .mdlext-accordion__tab{
     background-color: transparent !important;
 }
+
+/* animations */
+.hide{
+    animation: hide .7s;
+}
+
+@keyframes hide{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}

@@ -104,15 +104,31 @@ function startSocket(server) {
 
         socket.on('updateorder', function (data) {
             orders[data.id] = data.order;
+
+            setTimeout(function () {
+                //@TODO: test this fix this
+                statusUpdate(data.id, 'packed');
+
+                orders[data.id].status = 'packed';
+            }, random(3000, 10000));
         });
 
         socket.on('register', function () {
             socket.emit('registered', {orders: orders});
 
             socket.on('setstatus', function (data) {
-                //@TODO
-                console.dir(data);
+                orders[data.id].status = data.status;
+
+                statusUpdate(data.id, data.status);
             });
         });
     });
+}
+
+function statusUpdate(id, status){
+    io.sockets.emit('statusupdate', {id: id, status: status});
+}
+
+function random(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }

@@ -6,7 +6,8 @@ var socket_args = {
 };
 var socket = io(socket_host, socket_args); //Socket io listener
 window.Promise = window.Promise || window.ES6Promise.Promise; //fix for promises
-var snackbarContainer;
+var snackbarContainer,
+    orders = [];
 
 //load templates
 var wipOrder = require("./wipOrder.jade"),
@@ -32,11 +33,11 @@ function registerSocket() {
 
     //Check if we have successfully registered
     socket.on('registered', function (r) {
-        console.log(r.orders);
+        orders = r.orders;
+
         //load orders from server
         r.orders.forEach(function (o) {
             if (o) {
-                console.log(o);
                 switch (o.status) {
                     case 'wip':
                         displayNewOrder(o);
@@ -48,6 +49,15 @@ function registerSocket() {
                         //not showing this order because it's already shipped
                         break;
                 }
+            }
+        });
+
+        //add listener for order status change
+        socket.on('statusupdate', function (data) {
+            if (orders[data.id].status !== data.status) {
+                orders[data.id].status = data.status;
+
+                moveOrderToPacked(data.id);
             }
         });
 
@@ -86,23 +96,30 @@ function registerSocket() {
                 //send loaded data to server
                 socket.emit('updateorder', {id: order.id, order: order});
 
+                //update local order array
+                orders[order.id] = order;
+
                 //display new order on manager screen
                 displayNewOrder(order);
 
                 //notify manager about new order
-                var toast = {
-                    message: 'New order # ' + data.order.id + ' added'
-                };
-                snackbarContainer.MaterialSnackbar.showSnackbar(toast);
+                notify('New order # ' + data.order.id + ' added');
             });
         });
     });
 }
 
+function notify(message) {
+    var toast = {
+        message: message
+    };
+    snackbarContainer.MaterialSnackbar.showSnackbar(toast);
+}
 
 function displayNewOrder(order) {
     var tr = document.createElement('tr');
     tr.id = 'order' + order.id;
+    tr.setAttribute('data-id', order.id);
     tr.innerHTML = wipOrder({
         id: order.id,
         summaryText: order.summaryText,
@@ -112,19 +129,48 @@ function displayNewOrder(order) {
     gid('section_wip').appendChild(tr);
 
     componentHandler.upgradeDom();
-    // componentHandler.upgradeElement(tr);
 }
 
-function displayPackedOrder() {
+function displayPackedOrder(order) {
+    var tr = document.createElement('tr');
+    tr.id = 'order' + order.id;
+    tr.setAttribute('data-id', order.id);
+    tr.innerHTML = packedOrder({
+        id: order.id,
+        summaryText: order.summaryText,
+        orderItems: order.items
+    });
 
+    gid('section_packed').appendChild(tr);
+
+    gid('checkbox-for-order' + order.id).addEventListener('click', function () {
+        moveOrderToShipped(order.id);
+    });
+
+    componentHandler.upgradeDom();
 }
 
-function moveOrderToPacked() {
+function moveOrderToPacked(orderId) {
+    //remove orders from processing
+    gid('order' + orderId).parentNode.removeChild(gid('order' + orderId));
 
+    //show order in completed
+    displayPackedOrder(orders[orderId]);
+
+    //notify about order completion
+    notify('Order # ' + orderId + ' completed');
 }
 
-function moveOrderToDone() {
+function moveOrderToShipped(orderId) {
+    //hide element
+    gid('order' + orderId).classList.add("hide");
+    setTimeout(function () {
+        gid('section_packed').removeChild(gid('order' + orderId));
+    }, 650);
 
+    //update status at server and local
+    orders[orderId].status = 'shipped';
+    socket.emit('setstatus', {id: orderId, status: 'shipped'});
 }
 
 var api = {
@@ -222,7 +268,6 @@ function getWarehouseId() {
     var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     return letters[random(0, letters.length)] + '-' + random(1, 99);
 }
-
 
 function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
