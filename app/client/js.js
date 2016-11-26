@@ -63,48 +63,53 @@ function registerSocket() {
 
         //Add listener for new order request
         socket.on('neworder', function (data) {
-            /*
-             id: newOrderId,
-             items: items,
-             status: 'wip'
-             */
+            try {
+                /*
+                 id: newOrderId,
+                 items: items,
+                 status: 'wip'
+                 */
 
-            //parse ean from order
-            var order = data.order.items;
+                //parse ean from order
+                var order = data.order.items;
 
-            //load info from kesko api
-            api.getItemInfo(order, function (result) {
-                var sum = 0;
+                //load info from kesko api
+                api.getItemInfo(order, function (result) {
+                    var sum = 0;
 
-                order.forEach(function (item) {
-                    item.price = result[item.ean].price;
-                    sum += Math.ceil10(item.price * item.amount, -2);
-                    item.wid = result[item.ean].wid;
-                    item.name = result[item.ean].name;
-                    item.desc = result[item.ean].desc;
-                    item.img = getImageUrl(result[item.ean].images)
+                    order.forEach(function (item) {
+                        item.price = result[item.ean].price;
+                        sum += Math.ceil10(item.price * item.amount, -2);
+                        item.wid = result[item.ean].wid;
+                        item.name = result[item.ean].name;
+                        item.desc = result[item.ean].desc;
+                        item.img = getImageUrl(result[item.ean].images)
+                    });
+
+                    order = {
+                        id: data.order.id,
+                        status: data.order.status,
+                        items: order,
+                        summary: sum,
+                        summaryText: sum + '€'
+                    };
+
+                    //send loaded data to server
+                    socket.emit('updateorder', {id: order.id, order: order});
+
+                    //update local order array
+                    orders[order.id] = order;
+
+                    //display new order on manager screen
+                    displayNewOrder(order);
+
+                    //notify manager about new order
+                    notify('New order # ' + data.order.id + ' added');
                 });
-
-                order = {
-                    id: data.order.id,
-                    status: data.order.status,
-                    items: order,
-                    summary: sum,
-                    summaryText: sum + '€'
-                };
-
-                //send loaded data to server
-                socket.emit('updateorder', {id: order.id, order: order});
-
-                //update local order array
-                orders[order.id] = order;
-
-                //display new order on manager screen
-                displayNewOrder(order);
-
-                //notify manager about new order
-                notify('New order # ' + data.order.id + ' added');
-            });
+            } catch (e) {
+                console.log(e);
+                console.log('smth went wrong ean ' + data.order.items);
+            }
         });
     });
 }
