@@ -2,9 +2,9 @@ mixin itemLi(title, amount, price, ean, wid)
     li.mdl-list__item.mdl-list__item--three-line
         span.mdl-list__item-primary-content.text-left
             span.full-width.flex
-                .half-width=title + '' + title
+                .width-80=title
                 - var subSum = Math.ceil10(amount * price, -2);
-                .half-width.text-right= subSum + '€'
+                .width-20.text-right= subSum + '€'
             span.mdl-list__item-text-body
                 - var amountText;
                 - if (amount == 1){amountText = amount + ' pc';}else{amountText = amount + ' pcs';}

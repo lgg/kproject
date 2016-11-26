@@ -4,11 +4,11 @@ var log = require('./log.js');
 var io;
 
 //App settings
-//var port = 3003; //process.env.PORT; //port on which we will serve the app
-//var port_socket = 3003; //process.env.PORT; //port on which socket server will start
+var port = 3003; //process.env.PORT; //port on which we will serve the app
+var port_socket = 3003; //process.env.PORT; //port on which socket server will start
 
-var port = process.env.PORT; //port on which we will serve the app
-var port_socket = process.env.PORT; //port on which socket server will start
+// var port = process.env.PORT; //port on which we will serve the app
+// var port_socket = process.env.PORT; //port on which socket server will start
 
 //data for orders
 var orders = [],
