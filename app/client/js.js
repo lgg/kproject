@@ -6,6 +6,7 @@ var socket_args = {
 };
 var socket = io(socket_host, socket_args); //Socket io listener
 var Promise = Promise || ES6Promise.Promise; //fix for promises
+var snackbarContainer;
 
 /**
  * Socket.io emit
@@ -17,6 +18,8 @@ function send(type, val) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    snackbarContainer = document.querySelector('#toast');
+
     registerSocket();
 });
 
@@ -27,22 +30,50 @@ function registerSocket() {
     socket.on('registered', function () {
         //Add listener for new order request
         socket.on('neworder', function (data) {
-
             /*
-             id
-             ean
-             status
+             id: newOrderId,
+             items: items,
+             status: 'wip'
              */
-            console.log(data.order);
 
-            api.getItemInfo(data.order.ean);
+            //parse ean from order
+            var order = data.order.items;
+
+            //load info from kesko api
+            api.getItemInfo(order, function (result) {
+                var sum = 0;
+
+                order.forEach(function (item) {
+                    item.price = result[item.ean].price;
+                    sum += item.price;
+                    item.name = result[item.ean].name;
+                    item.desc = result[item.ean].desc;
+                    item.img = getImageUrl(result[item.ean].images)
+                });
+
+                order = {
+                    id: data.order.id,
+                    items: order,
+                    summary: sum,
+                    summaryText: sum + '€'
+                };
+
+                //display new order on manager screen
+                displayNewOrder(order);
+
+                //notify manager about new order
+                var toast = {
+                    message: 'New order # ' + data.order.id + ' added'
+                };
+                snackbarContainer.MaterialSnackbar.showSnackbar(toast);
+            });
         });
     });
 }
 
 
 function displayNewOrder(order) {
-
+    console.log(order);
 }
 
 function moveOrderToPacked() {
@@ -58,7 +89,7 @@ var api = {
     url: 'https://api.eu.apiconnect.ibmcloud.com/kesko-dev-rauta-api/qa/products/',
     language: 'fi',
     ibmid: '4bc37a99-049e-4a03-8c35-270810e7e851',
-    getItemInfo: function (ean) {
+    getItemInfo: function (items, callback) {
         var headers = [
             ['X-IBM-Client-Id', api.ibmid],
             ['X-IBM-Client-Secret', api.key],
@@ -67,13 +98,24 @@ var api = {
             ['accept', 'application/json']
         ];
 
-        getJson(api.url + ean, headers, function (data) {
-            return {
-                name: data.name,
-                desc: data.description,
-                ean: ean,
-                images: data.images
-            };
+        var result = {},
+            parsedItems = 0;
+
+        items.forEach(function (item) {
+            getJson(api.url + item.ean, headers, function (data) {
+                result[item.ean] = {
+                    price: getPrice(item.ean),
+                    name: data.name,
+                    desc: data.description,
+                    ean: item.ean,
+                    images: data.images
+                };
+                parsedItems++;
+
+                if (parsedItems == items.length) {
+                    callback(result);
+                }
+            });
         });
     }
 };
@@ -114,4 +156,32 @@ function getJson(url, headers, callback) {
     };
 
     request.send();
+}
+
+function getPrice(ean) {
+    var hardcoded = [
+        [6408070025598, 10],
+        [4042448843227, 10],
+        [8016738709162, 10],
+        [3253560306977, 10],
+        [5000366120331, 10],
+        [3253561929052, 10],
+        [7320090038527, 10],
+        [7311490010787, 10],
+        [7320090038510, 10],
+        [7393564291018, 10],
+    ];
+
+    for (var i = 0; i < hardcoded.length; i++) {
+        if (hardcoded[i][0] == ean) {
+            return hardcoded[i][1];
+        }
+    }
+
+    return random(5, 100);
+}
+
+
+function random(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
