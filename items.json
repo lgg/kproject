@@ -1,0 +1,332 @@
+{
+  "totalHits": 1126,
+  "results": [
+    {
+      "id": 500029488,
+      "ean": "3165140349420",
+      "name": "TRIMMER BOSCH ART 23 EASYTRIM",
+      "measurements": {
+        "netWeight": "2 kg",
+        "grossDimensions": "16 x 20 x 68 cm"
+      },
+      "countryOfOrigin": "DE",
+      "salesUnit": "PC",
+      "readyForPublication": false,
+      "attributes": {
+        "vendorAndVendorArticleNumber": "3"
+      },
+      "brandId": 2281,
+      "categoryId": 49565040,
+      "images": [
+        {
+          "url": "http://public-qa.keskofiles.com/f/k-rauta/products/3165140349420?h=400&w=400&fit=fill",
+          "type": "PRODUCT",
+          "attributes": {
+            "name": "500029488_1.jpg",
+            "modified": "2014-06-13 19:32:58"
+          }
+        }
+      ]
+    },
+    {
+      "id": 500226892,
+      "ean": "3165140465304",
+      "name": "SHREDDER ELECTRIC BOSCH AXT 22D",
+      "measurements": {
+        "netWeight": "35,08 kg",
+        "grossDimensions": "68 x 40 x 76 cm"
+      },
+      "countryOfOrigin": "HU",
+      "salesUnit": "PC",
+      "readyForPublication": false,
+      "attributes": {
+        "crossSellProducts": "000000000501360150,000000000500746192,000000000500226930",
+        "vendorAndVendorArticleNumber": "3"
+      },
+      "brandId": 2281,
+      "categoryId": 49565320,
+      "images": [
+        {
+          "url": "http://public-qa.keskofiles.com/f/k-rauta/products/3165140465304",
+          "type": "PRODUCT",
+          "attributes": {
+            "name": "500226892_1.jpg",
+            "modified": "2013-12-17 15:28:26"
+          }
+        }
+      ]
+    },
+    {
+      "id": 500339333,
+      "ean": "3165140346085",
+      "name": "IMPACT DRILL BOSCH GBH 2-26 DFR",
+      "measurements": {
+        "netWeight": "5,41 kg",
+        "grossDimensions": "37 x 11,5 x 45 cm"
+      },
+      "countryOfOrigin": "DE",
+      "salesUnit": "PC",
+      "readyForPublication": false,
+      "attributes": {
+        "replacementProducts": "000000000500855195",
+        "vendorAndVendorArticleNumber": "3"
+      },
+      "brandId": 448,
+      "categoryId": 35502200,
+      "images": [
+        {
+          "url": "http://public-qa.keskofiles.com/f/k-rauta/products/3165140346085?h=400&w=400&fit=fill",
+          "type": "PRODUCT",
+          "attributes": {
+            "name": "500339333_1.jpg",
+            "modified": "2014-02-25 01:05:39"
+          }
+        }
+      ]
+    },
+    {
+      "id": 500555812,
+      "ean": "3165140468602",
+      "name": "GRASS TRIMMER ART 26 LI BOSCH",
+      "measurements": {
+        "netWeight": "3,99 kg",
+        "grossDimensions": "25 x 14 x 78,6 cm"
+      },
+      "countryOfOrigin": "CN",
+      "salesUnit": "PC",
+      "readyForPublication": false,
+      "attributes": {
+        "vendorAndVendorArticleNumber": "3"
+      },
+      "brandId": 2281,
+      "categoryId": 49565080,
+      "images": [
+        {
+          "url": "http://public-qa.keskofiles.com/f/k-rauta/products/3165140468602?h=400&w=400&fit=fill",
+          "type": "PRODUCT",
+          "attributes": {
+            "name": "500555812_1.jpg",
+            "modified": "2013-05-22 01:50:01"
+          }
+        }
+      ]
+    },
+    {
+      "id": 500534359,
+      "ean": "3165140472760",
+      "name": "IMPACT DRILL BOSCH GBH 36 VF -LI 2X2,6AH",
+      "measurements": {
+        "netWeight": "10,14 kg",
+        "netDimensions": "38 x 15 x 49,5 cm",
+        "grossDimensions": "38 x 15 x 49,5 cm"
+      },
+      "countryOfOrigin": "LV",
+      "salesUnit": "PC",
+      "readyForPublication": false,
+      "attributes": {
+        "vendorAndVendorArticleNumber": "3"
+      },
+      "brandId": 448,
+      "categoryId": 35506200,
+      "images": [
+        {
+          "url": "http://public-qa.keskofiles.com/f/k-rauta/products/3165140472760?h=400&w=400&fit=fill",
+          "type": "PRODUCT",
+          "attributes": {
+            "name": "500534359_1.jpg",
+            "modified": "2014-02-24 21:13:24"
+          }
+        }
+      ]
+    },
+    {
+      "id": 500589539,
+      "ean": "3165140256360",
+      "name": "Handgräsklippare Bosch Ahm 38",
+      "descriptionLong": "Viktiga produktegenskaper\n\n    Okomplicerad: snabb, smidig klippning av små gräsytor.\n    Effektiv: cylinderklippningsprincipen ger bra klippkvalitet.\n    Raffinerad: smidig inställning av underkniven med klick-låsning.\n\nYtterligare produktfördelar\n\n    Klippcylinder med 5 vridna knivar i härdat stål\n    Steglös klipphöjdsinställning och 38 cm-klippbredd\n    Enkel underknivsjustering med “klicklåsning“\n    Underhållsfri kullagrad cylinderaxel\n    Komfortram ger bättre ergonomi\n    Komforthjulen med specialutväxling ger litet skjutmotstånd",
+      "measurements": {
+        "netWeight": "9 kg",
+        "grossDimensions": "44 x 28 x 52 cm"
+      },
+      "countryOfOrigin": "DE",
+      "salesUnit": "PC",
+      "readyForPublication": false,
+      "attributes": {
+        "vendorAndVendorArticleNumber": "3"
+      },
+      "brandId": 2281,
+      "categoryId": 49550080,
+      "images": [
+        {
+          "url": "http://public-qa.keskofiles.com/f/k-rauta/products/3165140256360?h=400&w=400&fit=fill",
+          "type": "PRODUCT",
+          "attributes": {
+            "name": "500589539_1.jpg",
+            "modified": "2015-03-10 12:37:50"
+          }
+        }
+      ]
+    },
+    {
+      "id": 500589542,
+      "ean": "3165140524278",
+      "name": "Accumulator Lawn Mower BOSCH ROTAK 43 Li",
+      "measurements": {
+        "netWeight": "19,32 kg",
+        "grossDimensions": "50 x 49,5 x 79 cm"
+      },
+      "countryOfOrigin": "GB",
+      "salesUnit": "PC",
+      "readyForPublication": false,
+      "attributes": {
+        "vendorAndVendorArticleNumber": "3"
+      },
+      "brandId": 448,
+      "categoryId": 49550240,
+      "images": [
+        {
+          "url": "http://public-qa.keskofiles.com/f/k-rauta/products/3165140524278/action?h=400&w=400&fit=fill",
+          "type": "ACTION",
+          "attributes": {
+            "name": "500589542_A.jpg",
+            "modified": "2013-05-10 08:46:50"
+          }
+        },
+        {
+          "url": "http://public-qa.keskofiles.com/f/k-rauta/products/3165140524278?h=400&w=400&fit=fill",
+          "type": "PRODUCT",
+          "attributes": {
+            "name": "500589542_1.jpg",
+            "modified": "2013-05-10 08:46:42"
+          }
+        }
+      ]
+    },
+    {
+      "id": 500345443,
+      "ean": "3165140435345",
+      "name": "IMPACT DRILL BOSCH GBH 2-23 RE",
+      "measurements": {
+        "netWeight": "4,36 kg",
+        "grossDimensions": "35 x 11 x 39,5 cm"
+      },
+      "countryOfOrigin": "DE",
+      "salesUnit": "PC",
+      "readyForPublication": false,
+      "attributes": {
+        "replacementProducts": "000000000500751784",
+        "vendorAndVendorArticleNumber": "3"
+      },
+      "brandId": 448,
+      "categoryId": 35502200,
+      "images": [
+        {
+          "url": "http://public-qa.keskofiles.com/f/k-rauta/products/3165140435345/action?h=400&w=400&fit=fill",
+          "type": "ACTION",
+          "attributes": {
+            "name": "500345443_A.jpg",
+            "modified": "2014-02-24 23:59:53"
+          }
+        },
+        {
+          "url": "http://public-qa.keskofiles.com/f/k-rauta/products/3165140435345?h=400&w=400&fit=fill",
+          "type": "PRODUCT",
+          "attributes": {
+            "name": "500345443_1.jpg",
+            "modified": "2014-02-25 00:03:40"
+          }
+        }
+      ]
+    },
+    {
+      "id": 500029484,
+      "ean": "3165140393560",
+      "name": "ROTARY MOWER BOSCH ROTAK 34",
+      "measurements": {
+        "netWeight": "13,98 kg",
+        "grossDimensions": "52,1 x 44,3 x 65,5 cm"
+      },
+      "countryOfOrigin": "DE",
+      "salesUnit": "PC",
+      "readyForPublication": false,
+      "attributes": {
+        "vendorAndVendorArticleNumber": "3"
+      },
+      "brandId": 448,
+      "categoryId": 49550160,
+      "images": [
+        {
+          "url": "http://public-qa.keskofiles.com/f/k-rauta/products/3165140393560/action",
+          "type": "ACTION",
+          "attributes": {
+            "name": "500029484_A.jpg",
+            "modified": "2013-05-10 08:41:37"
+          }
+        },
+        {
+          "url": "http://public-qa.keskofiles.com/f/k-rauta/products/3165140393560?h=400&w=400&fit=fill",
+          "type": "PRODUCT",
+          "attributes": {
+            "name": "500029484_1.jpg",
+            "modified": "2013-05-10 08:41:22"
+          }
+        }
+      ]
+    },
+    {
+      "id": 500029488,
+      "ean": "3165140349420",
+      "name": "TRIMMER BOSCH ART 23 EASYTRIM",
+      "measurements": {
+        "netWeight": "2 kg",
+        "grossDimensions": "16 x 20 x 68 cm"
+      },
+      "countryOfOrigin": "DE",
+      "salesUnit": "PC",
+      "readyForPublication": false,
+      "attributes": {
+        "vendorAndVendorArticleNumber": "3"
+      },
+      "brandId": 2281,
+      "categoryId": 49565040,
+      "images": [
+        {
+          "url": "http://public-qa.keskofiles.com/f/k-rauta/products/3165140349420?h=400&w=400&fit=fill",
+          "type": "PRODUCT",
+          "attributes": {
+            "name": "500029488_1.jpg",
+            "modified": "2014-06-13 19:32:58"
+          }
+        }
+      ]
+    },
+    {
+      "id": 500345463,
+      "ean": "3165140442831",
+      "name": "DRIVER BOSCH PSR 10,8 LI,",
+      "measurements": {
+        "netWeight": "2,38 kg",
+        "grossDimensions": "27 x 11 x 29 cm"
+      },
+      "countryOfOrigin": "HU",
+      "salesUnit": "PC",
+      "readyForPublication": false,
+      "attributes": {
+        "replacementProducts": "000000000500882551",
+        "vendorAndVendorArticleNumber": "3"
+      },
+      "brandId": 448,
+      "categoryId": 35506100,
+      "images": [
+        {
+          "url": "http://public-qa.keskofiles.com/f/k-rauta/products/3165140442831",
+          "type": "PRODUCT",
+          "attributes": {
+            "name": "500345463_1.jpg",
+            "modified": "2014-02-24 20:13:09"
+          }
+        }
+      ]
+    }
+  ]
+}
