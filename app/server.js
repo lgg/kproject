@@ -77,6 +77,10 @@ app.get('/status/:orderId', function (req, res) {
 app.get('/price/:ean', function (req, res) {
     log.log('get request for price by ean ' + req.params.ean);
 
+    //fake price
+    generatePrice(req.params.ean);
+
+    //response price
     res.json({price: prices[req.params.ean]});
 });
 
