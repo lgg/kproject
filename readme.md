@@ -24,6 +24,22 @@
 
 ### Product info
 
+* you will need:
+    * ibm unique app id (can be found on ibm api testing website after one of request)
+        * or just take mine: `4bc37a99-049e-4a03-8c35-270810e7e851`
+    * ibm app secret
+        * or just take mine: `N1yF3gF4bE6vT1eL3aJ1jT2hH6wI0uV4iX8eJ3xK7tO0lA2jN8`  
+* send get request to
+    * url `https://api.eu.apiconnect.ibmcloud.com/kesko-dev-rauta-api/qa/products/EAN`
+    * where `EAN` is product ean number
+* your request must contain
+    * headers:
+        * `accept-language: 'fi'`
+        * `content-type: 'application/json'`
+        * `accept: 'application/json'`
+        * `X-IBM-Client-Id: YOURAPPID`
+        * `X-IBM-Client-Secret: YOURAPPSECRET`
+
 ===
 
 ## app api
