@@ -79,6 +79,11 @@ tr:hover .mdlext-accordion__tabpanel{
     background-color: transparent !important;
 }
 
+.fake-hover:hover{
+    background: none !important;
+    cursor: default !important;
+}
+
 /* animations */
 .hide{
     animation: hide .7s;
