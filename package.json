@@ -7,7 +7,7 @@
     "debug": "node app/server.js --debug=socket.io*",
     "serve": "node app/server.js",
     "start": "npm run build && node app/server.js",
-    "build": "browserify app/client/js/js.js -o app/client/js/bundle.js"
+    "build": "browserify -t jadeify app/client/js.js -o app/client/bundle.js"
   },
   "author": "",
   "license": "",
@@ -19,6 +19,8 @@
     "browser-sync": "^2.18.2",
     "browserify": "^13.1.1",
     "chalk": "^1.1.3",
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "jade": "^1.11.0",
+    "jadeify": "^4.6.0"
   }
 }
