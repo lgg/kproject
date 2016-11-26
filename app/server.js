@@ -22,15 +22,15 @@ app.use('/', require('express').static(__dirname + '/client'));
 
 //API for mobile app
 //create new order
-app.get('/neworder/:itemId', function (req, res) {
+app.get('/neworder/:ean', function (req, res) {
     var newOrderId = orders.length,
         order = {
             id: newOrderId,
-            itemId: req.params.itemId,
+            ean: req.params.ean,
             status: 'wip',
         };
 
-    log.log('get request for new order #' + newOrderId + ' item id ' + req.params.itemId);
+    log.log('get request for new order #' + newOrderId + ' item id ' + req.params.ean);
 
     orders.push(order);
 
