@@ -51,6 +51,10 @@
 
 ## app api
 
+**!!!IMPORTANT!!!** 
+
+Everywhere change `HOST` to one domain name from top of rhis readme
+
 ### get price for product
 
 * send get request to url:
