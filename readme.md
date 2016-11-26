@@ -1,5 +1,11 @@
 # api
 
+## available  domains
+
+* http://kproject.paas.datacenter.fi/
+* http://ktools.store/
+* http://wearekesko.store/
+
 ## hardcoded for emulating NFC
 
 * items:
@@ -44,6 +50,9 @@
 ===
 
 ## app api
+
+### get price for product
+
 
 ### add new order
 

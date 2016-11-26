@@ -13,7 +13,12 @@ var port_socket = process.env.PORT; //port on which socket server will start
 //data for orders
 var orders = [],
     clientSockets = [],
-    startIdForOrders = 100;
+    startIdForOrders = 100,
+    prices = {
+        3253560306977: 8.95,
+        3253561929052: 17.95,
+        7320090038527: 41
+    };
 
 //create http server
 var app = require('express')();
@@ -66,6 +71,13 @@ app.get('/status/:orderId', function (req, res) {
     log.log('get request for status check order #' + req.params.orderId);
 
     res.json({status: orders[req.params.orderId].status});
+});
+
+//get price for order
+app.get('/price/:ean', function (req, res) {
+    log.log('get request for price by ean ' + req.params.ean);
+
+    res.json({price: prices[req.params.ean]});
 });
 
 //If we have error - die
@@ -127,10 +139,19 @@ function startSocket(server) {
     });
 }
 
-function statusUpdate(id, status){
+function statusUpdate(id, status) {
     io.sockets.emit('statusupdate', {id: id, status: status});
 }
 
 function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function generatePrice(ean) {
+    if (prices[ean]) {
+        return prices[ean];
+    } else {
+        prices[ean] = random(5, 100);
+        return prices[ean];
+    }
 }
