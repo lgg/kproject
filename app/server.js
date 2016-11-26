@@ -125,6 +125,8 @@ function startSocket(server) {
             orders[data.id] = data.order;
 
             setTimeout(function () {
+                log.log('update order # ' + data.id + ' status to packed');
+
                 statusUpdate(data.id, 'packed');
 
                 orders[data.id].status = 'packed';
