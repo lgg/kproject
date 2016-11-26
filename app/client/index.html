@@ -8,10 +8,12 @@
     <!-- CSS -->
     <link rel="stylesheet" href="mdl/fonts.css">
     <link rel="stylesheet" href="mdl/material.deep_orange-pink.min.css">
+    <link rel="stylesheet" href="mdl/mdl-ext.min.css">
     <link rel="stylesheet" href="style.css">
 
     <!-- JS -->
     <script defer src="mdl/material.min.js"></script>
+    <script defer src="mdl/mdl-ext.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="js.js"></script>
 </head>
@@ -46,80 +48,152 @@
         <div class="page-content full-height">
             <div class="flex full-height">
                 <div class="split">
-                    <h4>In process</h4>
+                    <h4>In process (order is collecting)</h4>
 
-                    <table class="full-width mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                    <table class="full-width mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                         <thead>
                         <tr>
-                            <th class="mdl-data-table__cell--non-numeric">Item</th>
-                            <th>Item id</th>
-                            <th>Order id</th>
+                            <th>Order #</th>
                             <th>Summary</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td class="mdl-data-table__cell--non-numeric">Drill</td>
-                            <td>31</td>
-                            <td>133</td>
-                            <td>$12.90</td>
-                        </tr>
-                        <tr>
-                            <td class="mdl-data-table__cell--non-numeric">Hammer</td>
-                            <td>50</td>
-                            <td>156</td>
-                            <td>$5.25</td>
+                            <td colspan="2" class="no-padding">
+                                <ul id="my-accordion"
+                                    class="mdlext-accordion mdlext-js-accordion mdlext-accordion--vertical mdlext-js-ripple-effect"
+                                    role="tablist" aria-multiselectable="true">
+
+                                    <li class="mdlext-accordion__panel" role="presentation">
+                                        <header class="mdlext-accordion__tab" role="tab" aria-expanded="false">
+                                            <span class="mdlext-accordion__tab__caption full-width flex">
+                                                <div class="half-width">133</div>
+                                                <div class="half-width">12.5$</div>
+                                            </span>
+                                            <i class="mdlext-aria-toggle-material-icons"></i>
+                                        </header>
+                                        <section class="mdlext-accordion__tabpanel" role="tabpanel" aria-hidden="false">
+
+                                            <ul class="demo-list-three mdl-list">
+                                                <li class="mdl-list__item mdl-list__item--three-line">
+                                                    <span class="mdl-list__item-primary-content text-left">
+                                                        <span class="full-width flex">
+                                                            <div class="half-width">Title of item goes here</div>
+                                                            <div class="half-width text-right">2.5$</div>
+                                                        </span>
+                                                        <span class="mdl-list__item-text-body">
+                                                            <div>
+                                                                ean
+                                                            </div>
+                                                            <div>
+                                                                warehouse place
+                                                            </div>
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                                <li class="mdl-list__item mdl-list__item--three-line">
+                                                    <span class="mdl-list__item-primary-content text-left">
+                                                        <span>Title of item goes here</span>
+                                                        <span class="mdl-list__item-text-body">
+                                                            ean
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                                <li class="mdl-list__item mdl-list__item--three-line">
+                                                    <span class="mdl-list__item-primary-content text-left">
+                                                        <span>Title of item goes here</span>
+                                                        <span class="mdl-list__item-text-body">
+                                                            ean
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </section>
+                                    </li>
+                                </ul>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="split">
-                    <h4>Completed</h4>
+                    <h4>Waiting for customer to pick up on ?point?</h4>
 
-                    <table class="full-width mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                    <table class="full-width mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                         <thead>
                         <tr>
-                            <th class="mdl-data-table__cell--non-numeric">Item</th>
-                            <th>Item id</th>
-                            <th>Order id</th>
+                            <th>Order #</th>
                             <th>Summary</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td class="mdl-data-table__cell--non-numeric">Drill</td>
-                            <td>31</td>
-                            <td>133</td>
-                            <td>$12.90</td>
-                        </tr>
-                        <tr>
-                            <td class="mdl-data-table__cell--non-numeric">Hammer</td>
-                            <td>50</td>
-                            <td>156</td>
-                            <td>$5.25</td>
+                            <td colspan="2" class="no-padding">
+                                <ul id=""
+                                    class="mdlext-accordion mdlext-js-accordion mdlext-accordion--vertical mdlext-js-ripple-effect"
+                                    role="tablist" aria-multiselectable="true">
+
+                                    <li class="mdlext-accordion__panel" role="presentation">
+                                        <header class="mdlext-accordion__tab" role="tab" aria-expanded="false">
+                                            <span class="mdlext-accordion__tab__caption full-width flex flex-between flex-center__y">
+                                                <div class="padding-20">
+                                                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
+                                                        <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input">
+                                                    </label>
+                                                </div>
+                                                <div>133</div>
+                                                <div>12.5$</div>
+                                            </span>
+                                            <i class="mdlext-aria-toggle-material-icons"></i>
+                                        </header>
+                                        <section class="mdlext-accordion__tabpanel" role="tabpanel" aria-hidden="false">
+                                            <ul class="demo-list-three mdl-list">
+                                                <li class="mdl-list__item mdl-list__item--three-line">
+                                                    <span class="mdl-list__item-primary-content text-left">
+                                                        <span class="full-width flex">
+                                                            <div class="half-width">Title of item goes here</div>
+                                                            <div class="half-width text-right">2.5$</div>
+                                                        </span>
+                                                        <span class="mdl-list__item-text-body">
+                                                            <div>
+                                                                ean
+                                                            </div>
+                                                            <div>
+                                                                warehouse place
+                                                            </div>
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                                <li class="mdl-list__item mdl-list__item--three-line">
+                                                    <span class="mdl-list__item-primary-content text-left">
+                                                        <span>Title of item goes here</span>
+                                                        <span class="mdl-list__item-text-body">
+                                                            ean
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                                <li class="mdl-list__item mdl-list__item--three-line">
+                                                    <span class="mdl-list__item-primary-content text-left">
+                                                        <span>Title of item goes here</span>
+                                                        <span class="mdl-list__item-text-body">
+                                                            ean
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </section>
+                                    </li>
+                                </ul>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
+            </div>
 
-                <button id="demo-show-toast" class="mdl-button mdl-js-button mdl-button--raised" type="button">Show Toast</button>
-                <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
-                    <div class="mdl-snackbar__text"></div>
-                    <button class="mdl-snackbar__action" type="button"></button>
-                </div>
-                <script>
-                    (function() {
-                        'use strict';
-                        window['counter'] = 0;
-                        var snackbarContainer = document.querySelector('#demo-toast-example');
-                        var showToastButton = document.querySelector('#demo-show-toast');
-                        showToastButton.addEventListener('click', function() {
-                            'use strict';
-                            var data = {message: 'Example Message # ' + ++counter};
-                            snackbarContainer.MaterialSnackbar.showSnackbar(data);
-                        });
-                    }());
-                </script>
+            <div id="toast" class="mdl-js-snackbar mdl-snackbar">
+                <div class="mdl-snackbar__text"></div>
+                <button class="mdl-snackbar__action" type="button"></button>
             </div>
         </div>
     </main>

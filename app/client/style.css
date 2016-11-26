@@ -16,6 +16,18 @@ html, body{
     display: flex;
 }
 
+.flex-between{
+    justify-content: space-between;
+}
+
+.flex-center__y{
+    align-items: center;
+}
+
+.half-width{
+    width: 50%;
+}
+
 .split{
     width: 50%;
     height: 100%;
@@ -27,4 +39,37 @@ html, body{
 
 .split h4{
     text-align: center;
+}
+
+.font-size__11{
+    font-size: 11px !important;
+}
+
+.padding-20{
+    padding: 20px;
+}
+
+.no-padding{
+    padding: 0 !important;
+}
+
+tr:hover .mdlext-accordion__tabpanel{
+    background: white !important;
+}
+
+.text-left{
+    text-align: left !important;
+}
+
+.text-right{
+    text-align: right !important;
+}
+
+.mdlext-accordion__tab:focus{
+    outline: none !important;
+}
+
+/* FIXES */
+.mdlext-accordion__tab[aria-selected=true], .mdlext-accordion__tab{
+    background-color: transparent !important;
 }
