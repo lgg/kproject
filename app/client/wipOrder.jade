@@ -1,0 +1,26 @@
+mixin itemLi(title, amount, price, ean, wid)
+    li.mdl-list__item.mdl-list__item--three-line
+        span.mdl-list__item-primary-content.text-left
+            span.full-width.flex
+                .half-width=title + '' + title
+                - var subSum = Math.ceil10(amount * price, -2);
+                .half-width.text-right= subSum + '€'
+            span.mdl-list__item-text-body
+                - var amountText;
+                - if (amount == 1){amountText = amount + ' pc';}else{amountText = amount + ' pcs';}
+                div= amountText
+                div= ean
+                div= wid
+
+td.no-padding(colspan='2')
+    ul.mdlext-accordion.mdlext-js-accordion.mdlext-accordion--vertical.mdlext-js-ripple-effect(role='tablist', aria-multiselectable='true')
+        li.mdlext-accordion__panel(role='presentation')
+            header.mdlext-accordion__tab(role='tab', aria-expanded='false')
+                span.mdlext-accordion__tab__caption.full-width.flex
+                    .half-width= id
+                    .half-width= summaryText
+                i.mdlext-aria-toggle-material-icons
+            section.mdlext-accordion__tabpanel(role='tabpanel', aria-hidden='false')
+                ul.demo-list-three.mdl-list
+                    each item in orderItems
+                        +itemLi(item.name, item.amount, item.price, item.ean, item.wid)

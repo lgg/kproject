@@ -5,8 +5,12 @@ var socket_args = {
     cookie: false
 };
 var socket = io(socket_host, socket_args); //Socket io listener
-var Promise = Promise || ES6Promise.Promise; //fix for promises
+window.Promise = window.Promise || window.ES6Promise.Promise; //fix for promises
 var snackbarContainer;
+
+//load templates
+var wipOrder = require("./wipOrder.jade"),
+    packedOrder = require("./packedOrder.jade");
 
 /**
  * Socket.io emit
@@ -27,7 +31,26 @@ function registerSocket() {
     send('register');
 
     //Check if we have successfully registered
-    socket.on('registered', function () {
+    socket.on('registered', function (r) {
+        console.log(r.orders);
+        //load orders from server
+        r.orders.forEach(function (o) {
+            if (o) {
+                console.log(o);
+                switch (o.status) {
+                    case 'wip':
+                        displayNewOrder(o);
+                        break;
+                    case 'packed':
+                        displayPackedOrder(o);
+                        break;
+                    default:
+                        //not showing this order because it's already shipped
+                        break;
+                }
+            }
+        });
+
         //Add listener for new order request
         socket.on('neworder', function (data) {
             /*
@@ -45,7 +68,8 @@ function registerSocket() {
 
                 order.forEach(function (item) {
                     item.price = result[item.ean].price;
-                    sum += item.price;
+                    sum += Math.ceil10(item.price * item.amount, -2);
+                    item.wid = result[item.ean].wid;
                     item.name = result[item.ean].name;
                     item.desc = result[item.ean].desc;
                     item.img = getImageUrl(result[item.ean].images)
@@ -53,10 +77,14 @@ function registerSocket() {
 
                 order = {
                     id: data.order.id,
+                    status: data.order.status,
                     items: order,
                     summary: sum,
                     summaryText: sum + '€'
                 };
+
+                //send loaded data to server
+                socket.emit('updateorder', {id: order.id, order: order});
 
                 //display new order on manager screen
                 displayNewOrder(order);
@@ -73,7 +101,22 @@ function registerSocket() {
 
 
 function displayNewOrder(order) {
-    console.log(order);
+    var tr = document.createElement('tr');
+    tr.id = 'order' + order.id;
+    tr.innerHTML = wipOrder({
+        id: order.id,
+        summaryText: order.summaryText,
+        orderItems: order.items
+    });
+
+    gid('section_wip').appendChild(tr);
+
+    componentHandler.upgradeDom();
+    // componentHandler.upgradeElement(tr);
+}
+
+function displayPackedOrder() {
+
 }
 
 function moveOrderToPacked() {
@@ -105,6 +148,7 @@ var api = {
             getJson(api.url + item.ean, headers, function (data) {
                 result[item.ean] = {
                     price: getPrice(item.ean),
+                    wid: getWarehouseId(),
                     name: data.name,
                     desc: data.description,
                     ean: item.ean,
@@ -160,16 +204,9 @@ function getJson(url, headers, callback) {
 
 function getPrice(ean) {
     var hardcoded = [
-        [6408070025598, 10],
-        [4042448843227, 10],
-        [8016738709162, 10],
-        [3253560306977, 10],
-        [5000366120331, 10],
-        [3253561929052, 10],
-        [7320090038527, 10],
-        [7311490010787, 10],
-        [7320090038510, 10],
-        [7393564291018, 10],
+        [3253560306977, 8.95],
+        [3253561929052, 17.95],
+        [7320090038527, 41]
     ];
 
     for (var i = 0; i < hardcoded.length; i++) {
@@ -181,7 +218,39 @@ function getPrice(ean) {
     return random(5, 100);
 }
 
+function getWarehouseId() {
+    var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    return letters[random(0, letters.length)] + '-' + random(1, 99);
+}
+
 
 function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function gid(id) {
+    return document.getElementById(id);
+}
+
+Math.ceil10 = function (value, exp) {
+    return decimalAdjust('ceil', value, exp);
+};
+
+function decimalAdjust(type, value, exp) {
+    // Если степень не определена, либо равна нулю...
+    if (typeof exp === 'undefined' || +exp === 0) {
+        return Math[type](value);
+    }
+    value = +value;
+    exp = +exp;
+    // Если значение не является числом, либо степень не является целым числом...
+    if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+        return NaN;
+    }
+    // Сдвиг разрядов
+    value = value.toString().split('e');
+    value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+    // Обратный сдвиг
+    value = value.toString().split('e');
+    return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
 }

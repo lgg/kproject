@@ -34,16 +34,22 @@ app.get('/neworder/:items', function (req, res) {
         }
     }
 
-    var newOrderId = startIdForOrders + orders.length,
-        order = {
-            id: newOrderId,
-            items: items,
-            status: 'wip'
-        };
+    var newOrderId;
+    if (orders.length > 99) {
+        newOrderId = orders.length;
+    } else {
+        newOrderId = startIdForOrders + orders.length;
+    }
+
+    var order = {
+        id: newOrderId,
+        items: items,
+        status: 'wip'
+    };
 
     log.log('get request for new order #' + newOrderId);
 
-    orders.push(order);
+    orders[newOrderId] = order;
 
     clientSockets.forEach(function (socket) {
         socket.emit('neworder', {order: order})
@@ -96,8 +102,12 @@ function startSocket(server) {
 
         clientSockets.push(socket);
 
+        socket.on('updateorder', function (data) {
+            orders[data.id] = data.order;
+        });
+
         socket.on('register', function () {
-            socket.emit('registered');
+            socket.emit('registered', {orders: orders});
 
             socket.on('setstatus', function (data) {
                 //@TODO
