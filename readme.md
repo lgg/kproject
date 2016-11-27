@@ -2,9 +2,9 @@
 
 ## available  domains
 
-* http://kproject.paas.datacenter.fi/
-* http://ktools.store/
-* http://wearekesko.store/
+* https://kproject.paas.datacenter.fi/
+* https://ktools.store/
+* https://wearekesko.store/
 
 ## hardcoded for emulating NFC
 
