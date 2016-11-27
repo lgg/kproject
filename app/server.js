@@ -139,6 +139,8 @@ function startSocket(server) {
             socket.emit('registered', {orders: orders});
 
             socket.on('setstatus', function (data) {
+                log.log('set order # ' + data.id + ' to status ' + data.status);
+
                 orders[data.id].status = data.status;
 
                 statusUpdate(data.id, data.status);

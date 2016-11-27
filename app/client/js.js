@@ -54,7 +54,7 @@ function registerSocket() {
 
         //add listener for order status change
         socket.on('statusupdate', function (data) {
-            if (orders[data.id].status !== data.status) {
+            if (orders[data.id].status === "packed") {
                 orders[data.id].status = data.status;
 
                 moveOrderToPacked(data.id);
