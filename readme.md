@@ -1,4 +1,12 @@
-# api
+# Kesko store 2.0
+
+Project for [Junction 2016](https://hackjunction.com/)
+
+You can find more info [here](https://devpost.com/software/kesko-store-2-0)
+
+This is code for server-side part and web interface.
+
+## api docs
 
 ## available  domains
 
