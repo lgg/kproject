@@ -10,6 +10,8 @@ This is code for server-side part and web interface.
 
 ## available  domains
 
+*domains are dead*
+
 * https://kproject.paas.datacenter.fi/
 * https://ktools.store/
 * https://wearekesko.store/
@@ -55,7 +57,7 @@ This is code for server-side part and web interface.
         * `X-IBM-Client-Id: YOURAPPID`
         * `X-IBM-Client-Secret: YOURAPPSECRET`
 
-===
+---
 
 ## app api
 
@@ -96,6 +98,8 @@ Everywhere change `HOST` to one domain name from top of rhis readme
 * packed - order is completed/waiting for customer on pick point
 * shipped- order is shipped to client
     
-===
+---
 
 ## web api
+
+*todo add web api*
